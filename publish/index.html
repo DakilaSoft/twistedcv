@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<html>
+<head>
+	<title>TwistedCV Demo</title>
+	<meta charset="utf-8">
+	<meta rel="author" content="Greatxam Darthart">
+	<meta name="description" content="TwistedCV is a Web-Based implementation of OpenCV.">
+	<meta name="keywords" content="python twisted, webrtc, websocket, autobahn python, opencv, computer vision">
+</head>
+<body>
+<img id="imgView" />
+</body>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/UserMedia.js"></script>
+<script>
+
+window.onload = function() {
+	var userMedia = new UserMedia();
+	
+	var ws = new WebSocket("ws://106.187.45.234:9000");
+	ws.binaryType = "arraybuffer";
+    ws.onopen = function() {
+    	console.log("Connected!");
+        isopen = true;
+    }
+	ws.onclose = function(e) {
+		console.log("Connection closed.");
+        ws = null;
+        isopen = false;
+    }
+	ws.onmessage = function(e) {
+		if (typeof e.data == "string") {
+			$('#imgView').attr('src',e.data);
+		} else {
+			console.log("Binary message received");
+		}
+	}
+
+	var update = function(){
+		var video = userMedia.video;
+		if(video.readyState ===video.HAVE_ENOUGH_DATA ){
+			if(ws.bufferedAmount==0){
+				var blob = userMedia.snapshotBlob("image/jpeg");
+				ws.send(blob);
+			}
+		}
+		requestAnimationFrame(update);
+	}
+	update();
+}
+</script>
+</html>
