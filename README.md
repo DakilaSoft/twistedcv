@@ -22,6 +22,10 @@ or
 
 twistd twistedcv [--cascade=classifier/haarcascade_frontalface_alt.xml --port=9000]
 
-and for the client, you can try the demo here:
+and for the client, navigate to the url below:
 
-http://project.di9itdm9.com/twistedcv/publish/
+*http://localhost/twistedcv/publish/*
+
+Live Demo
+=====
+*http://project.di9itdm9.com/twistedcv/publish/*
