@@ -17,3 +17,6 @@ or
 
 twistd twistedcv
 
+and for the client, you can try the demo here:
+
+http://project.di9itdm9.com/twistedcv/publish/
