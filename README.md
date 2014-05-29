@@ -28,4 +28,4 @@ and for the client, navigate to the url below:
 
 Live Demo
 =====
-*http://project.di9itdm9.com/twistedcv/publish/*
+*http://twistedcv.dakilasoft.com/*
